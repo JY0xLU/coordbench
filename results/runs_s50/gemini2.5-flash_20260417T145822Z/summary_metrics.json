@@ -1,0 +1,41 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.09009249563378337,
+    "mean_tvd": 0.17723847189016312,
+    "mean_top1_match": 0.8,
+    "mean_flip_rate": 0.2,
+    "mean_spearman": 0.6443004136645409,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.8292935800526888,
+    "mean_tvd": 0.8681496598639457,
+    "mean_top1_match": 0.06666666666666667,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.25198154163443454,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.7560184074851877,
+    "mean_tvd": 0.8088746770025839,
+    "mean_top1_match": 0.13333333333333333,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.1470328150452751,
+    "item_count": 15
+  }
+]

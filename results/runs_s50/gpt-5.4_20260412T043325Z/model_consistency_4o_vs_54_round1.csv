@@ -1,0 +1,30 @@
+item_id,prompt_language,jsd_4o_vs_54,tvd_4o_vs_54,top1_match_4o_vs_54,top1_4o,top1_54,n4,n5
+study2_item_01,en,0.0,0.0,1.0,** London,** London,50,50
+study2_item_02,en,0.41415244726470707,0.62,0.0,harrykane,David Beckham,50,80
+study2_item_03,en,1.0,1.0,0.0,rishisunak,donaldtrump,50,80
+study2_item_05,en,1.0,1.0,0.0,snowdonia,Mount Everest.*,50,50
+study2_item_06,en,0.0,0.0,1.0,Fish and chips,Fish and chips,50,50
+study2_item_07,en,0.0,0.0,1.0,Big Ben,Big Ben,50,50
+study2_item_08,en,0.9289911704818996,0.98,0.0,Ed Sheeran,Elton John,50,50
+study2_item_09,en,0.8336791289905015,0.94,0.0,prideandprejudice,Harry Potter,50,50
+study2_item_10,en,0.0,0.0,1.0,BBC,BBC,50,50
+study2_item_11,en,0.8336791289905013,0.94,0.0,London,paris,50,50
+study2_item_12,en,0.1104233311958237,0.20408163265306123,1.0,Margaret Thatcher,Margaret Thatcher,49,50
+study2_item_13,en,0.41415244726470707,0.62,0.0,Pound,pound,50,50
+study2_item_14,en,0.0,0.0,1.0,Rose,Rose,50,50
+study2_item_15,en,0.0,0.0,1.0,football,football,50,50
+study2_item_01,zh,0.0,0.0,1.0,** London,** London,50,50
+study2_item_02,zh,0.01007286462500093,0.02000000000000001,1.0,David Beckham,David Beckham,50,50
+study2_item_03,zh,0.9406557062070924,0.98,0.0,winstonchurchill,donaldtrump,50,50
+study2_item_04,zh,0.04,0.04,1.0,bigben,bigben,50,50
+study2_item_05,zh,0.8658537981980636,0.94,0.0,snowdonia,Mount Everest.*,50,50
+study2_item_06,zh,0.0,0.0,1.0,Fish and chips,Fish and chips,50,50
+study2_item_07,zh,0.0,0.0,1.0,Big Ben,Big Ben,50,50
+study2_item_08,zh,0.01007286462500093,0.02000000000000001,1.0,Ed Sheeran,Ed Sheeran,50,50
+study2_item_09,zh,0.9289911704818996,0.98,0.0,prideandprejudice,harrypotter,50,50
+study2_item_10,zh,0.0,0.0,1.0,BBC,BBC,50,50
+study2_item_11,zh,0.0,0.0,1.0,London,London,50,50
+study2_item_12,zh,0.11202732429547502,0.15999999999999998,1.0,Margaret Thatcher,Margaret Thatcher,50,50
+study2_item_13,zh,0.062764486510794,0.12,1.0,pound,pound,50,50
+study2_item_14,zh,0.0,0.0,1.0,Rose,Rose,50,50
+study2_item_15,zh,0.0,0.0,1.0,football,football,50,50

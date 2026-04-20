@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "track-b-agent"
+version = "0.1.0"
+description = "Light Track B scaffolding: flags, audit stubs, repair templates (COMP3520 CoordBench)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.2.0",
+  "pyyaml>=6.0.2",
+  "typer>=0.16.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.0"]
+
+[project.scripts]
+track-b-agent = "track_b_agent.cli:run_cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

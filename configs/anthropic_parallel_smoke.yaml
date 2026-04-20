@@ -1,0 +1,36 @@
+providers:
+  anthropic:
+    enabled: true
+    model: ${ANTHROPIC_MODEL}
+    api_key_env: ANTHROPIC_AUTH_TOKEN
+    concurrency: 3
+    max_retries: 3
+    temperature: 1.0
+    max_output_tokens: 24
+    timeout_seconds: 120
+    base_url: ${ANTHROPIC_BASE_URL}
+    anthropic_version: "2023-06-01"
+    compat_mode: openai
+
+sampling:
+  panel_id: study2_british_within
+  answer_language: English
+  prompt_languages: [en, zh]
+  round1_samples: 2
+  round2_samples: 0
+  enable_round2: false
+  round2_trigger: cross_lingual_top1_mismatch
+  random_seed: 20260324
+
+normalization:
+  alias_path: ../data/aliases/default_aliases.csv
+  allow_unmapped: false
+  fuzzy_match_threshold: 95
+
+analysis:
+  bootstrap_resamples: 50
+  item_bootstrap_resamples: 50
+
+outputs:
+  run_root: ../artifacts/runs
+  cache_root: ../artifacts/cache_parallel_smoke

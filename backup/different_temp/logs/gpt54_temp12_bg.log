@@ -1,0 +1,15 @@
+2026-04-12 13:22:51,835 | INFO | coordbench.dataset.profile | Wrote dataset profile into /home/tianxin/COMP3520_Project/data/prepared/20260324T070530Z
+2026-04-12 13:22:52,918 | INFO | coordbench.runner | Running 900 pending requests for provider=openai round=1 (0 already complete)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/tianxin/COMP3520_Project/src/coordbench/cli.py", line 152, in <module>
+    main()
+  File "/home/tianxin/COMP3520_Project/src/coordbench/cli.py", line 141, in main
+    run_dir = _run_all(args.config)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tianxin/COMP3520_Project/src/coordbench/cli.py", line 36, in _run_all
+    normalize_run(config_path, run_dir)
+  File "/home/tianxin/COMP3520_Project/src/coordbench/normalize.py", line 239, in normalize_run
+    raise RuntimeError(
+RuntimeError: Normalization produced unresolved outputs. Review unresolved_queue.csv or set allow_unmapped=true.

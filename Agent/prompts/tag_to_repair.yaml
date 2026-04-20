@@ -1,0 +1,11 @@
+# Tag → repair 模板（不含 R_SHAM；sham 按 arm 单独施加）
+# 非法 tag 时实现应回退 R_COORD
+
+T_TRANS: R_SEM
+T_SALIENCE: R_SEM
+T_CULT: R_COORD
+T_LEAK: R_FMT
+T_LEX: R_FMT
+T_FRAG: R_FMT
+T_LITERAL: R_COORD
+T_UNK: R_COORD

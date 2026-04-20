@@ -1,0 +1,80 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.0500992065228725,
+    "mean_tvd": 0.10133333333333333,
+    "mean_top1_match": 0.8666666666666667,
+    "mean_flip_rate": 0.13333333333333333,
+    "mean_spearman": 0.698373875367593,
+    "item_count": 15
+  },
+  {
+    "metric_family": "cross_lingual",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 2,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.26550220320535944,
+    "mean_tvd": 0.4,
+    "mean_top1_match": 0.5,
+    "mean_flip_rate": 0.5,
+    "mean_spearman": null,
+    "item_count": 2
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.8554375321130604,
+    "mean_tvd": 0.8966666666666666,
+    "mean_top1_match": 0.13333333333333333,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.2029137531855127,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.8183750952583239,
+    "mean_tvd": 0.8706666666666667,
+    "mean_top1_match": 0.13333333333333333,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.21805771071167226,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 2,
+    "prompt_language": "en",
+    "mean_jsd": 0.8992609736772255,
+    "mean_tvd": 0.94,
+    "mean_top1_match": 0.0,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.08397301051836167,
+    "item_count": 2
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "MiniMax-M2.7-highspeed",
+    "round_index": 2,
+    "prompt_language": "zh",
+    "mean_jsd": 0.7800225914305756,
+    "mean_tvd": 0.89,
+    "mean_top1_match": 0.0,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.0414120088706233,
+    "item_count": 2
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "openai",
+    "model": "glm-4-airx",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.19077191560249307,
+    "mean_tvd": 0.256,
+    "mean_top1_match": 0.7333333333333333,
+    "mean_flip_rate": 0.26666666666666666,
+    "mean_spearman": 0.09351041801663898,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "glm-4-airx",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.8561999278631909,
+    "mean_tvd": 0.8969230769230768,
+    "mean_top1_match": 0.07692307692307693,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.22121010601107033,
+    "item_count": 13
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "glm-4-airx",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.7516457148592847,
+    "mean_tvd": 0.8059999999999998,
+    "mean_top1_match": 0.26666666666666666,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.17005695313635377,
+    "item_count": 15
+  }
+]

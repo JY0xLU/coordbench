@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling>=1.26.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coordbench"
+version = "0.1.0"
+description = "Cross-lingual tacit coordination benchmark pipeline for LLMs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "CoordBench Team" }
+]
+dependencies = [
+  "google-genai>=1.30.0",
+  "matplotlib>=3.9.0",
+  "numpy>=2.1.0",
+  "openai>=1.99.0",
+  "pandas>=2.2.0",
+  "pyyaml>=6.0.2",
+  "python-dotenv>=1.0.1",
+  "rapidfuzz>=3.9.0",
+  "requests>=2.32.0",
+  "scipy>=1.14.0",
+  "tenacity>=9.0.0",
+  "typer>=0.16.0",
+  "typing-extensions>=4.12.0",
+  "Unidecode>=1.3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+]
+
+[project.scripts]
+coordbench = "coordbench.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coordbench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+]

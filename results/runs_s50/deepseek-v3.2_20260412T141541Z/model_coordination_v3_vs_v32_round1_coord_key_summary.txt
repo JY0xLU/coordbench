@@ -1,0 +1,10 @@
+BY_LANGUAGE
+prompt_language  cells  mean_jsd  mean_tvd  top1_match_rate  min_n_v3  min_n_v32
+             en     15  0.002797  0.013333              1.0        50         50
+             zh     15  0.001222  0.016000              1.0        50         50
+
+OVERALL
+{'cells': 30, 'mean_jsd': 0.0020092479750094382, 'mean_tvd': 0.014666666666666663, 'top1_match_rate': 1.0, 'min_n_v3': 50, 'min_n_v32': 50}
+
+TOP1_MISMATCH_CELLS
+None

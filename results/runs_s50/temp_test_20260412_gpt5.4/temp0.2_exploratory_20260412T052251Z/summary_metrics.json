@@ -1,0 +1,41 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.2534012582920712,
+    "mean_tvd": 0.26666666666666666,
+    "mean_top1_match": 0.7142857142857143,
+    "mean_flip_rate": 0.2857142857142857,
+    "mean_spearman": -0.6830127018922194,
+    "item_count": 14
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.7733544097104429,
+    "mean_tvd": 0.8114285714285714,
+    "mean_top1_match": 0.21428571428571427,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.1074385553252889,
+    "item_count": 14
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.7916662139597859,
+    "mean_tvd": 0.834,
+    "mean_top1_match": 0.26666666666666666,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.13924685343507429,
+    "item_count": 15
+  }
+]

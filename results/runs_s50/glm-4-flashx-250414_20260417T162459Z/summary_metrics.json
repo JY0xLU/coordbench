@@ -1,0 +1,41 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "openai",
+    "model": "glm-4-flashx-250414",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.21349698541402257,
+    "mean_tvd": 0.3186666666666666,
+    "mean_top1_match": 0.8,
+    "mean_flip_rate": 0.2,
+    "mean_spearman": 0.18814372906620255,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "glm-4-flashx-250414",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.8157183949396072,
+    "mean_tvd": 0.8666666666666667,
+    "mean_top1_match": 0.16666666666666666,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.11555871757096997,
+    "item_count": 12
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "openai",
+    "model": "glm-4-flashx-250414",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.8735537633972464,
+    "mean_tvd": 0.9091666666666667,
+    "mean_top1_match": 0.08333333333333333,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.22243582933943606,
+    "item_count": 12
+  }
+]

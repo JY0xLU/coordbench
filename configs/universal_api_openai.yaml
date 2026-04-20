@@ -1,0 +1,33 @@
+providers:
+  openai:
+    enabled: true
+    model: ${UNIVERSAL_MODEL}
+    api_key_env: UNIVERSAL_API_KEY
+    base_url: ${UNIVERSAL_BASE_URL}
+    concurrency: ${UNIVERSAL_CONCURRENCY}
+    max_retries: 10
+    temperature: 1.0
+    max_output_tokens: 256
+
+sampling:
+  panel_id: study2_british_within
+  answer_language: English
+  prompt_languages: [en, zh]
+  round1_samples: 1
+  round2_samples: 0
+  enable_round2: false
+  round2_trigger: cross_lingual_top1_mismatch
+  random_seed: 20260324
+
+normalization:
+  alias_path: ../data/aliases/default_aliases.csv
+  allow_unmapped: false
+  fuzzy_match_threshold: 95
+
+analysis:
+  bootstrap_resamples: 100
+  item_bootstrap_resamples: 100
+
+outputs:
+  run_root: ${UNIVERSAL_RUN_ROOT:../artifacts/runs}
+  cache_root: ${UNIVERSAL_CACHE_ROOT:../artifacts/cache}

@@ -1,0 +1,22 @@
+# Track B — 示例配置（复制为 track_b.yaml 后修改）
+# 见 Agent/agent_plan.md §3、§7.1.1
+
+track_b_version: "0.1.0"
+baseline_definition: "track_a_round1_only"
+
+# Flag 规则：F1 必开；F2/F3 可选
+rules:
+  use_f1: true
+  use_f2: false
+  tau_xling: 0.25
+  use_f3: false
+  tau_human: 0.35
+
+# §3.2
+max_flagged_items: 8
+
+# §7.1.1
+unflagged_control_count: 3
+
+# 写入 manifest 的元数据
+frozen_track_a_commit: ""  # 可选：git rev-parse HEAD

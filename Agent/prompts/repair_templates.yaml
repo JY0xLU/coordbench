@@ -1,0 +1,26 @@
+# 占位符与 coordbench.prompts 一致；Track B 专用文案（勿含人类分布提示）
+# 语言分支在渲染时由代码按 prompt_language 选择 user 段（此处存 en/zh 各一份便于审计）
+
+R_SEM:
+  system_en: "You are taking part in a pure coordination task. Your goal is to give the answer another participant {context_en} is most likely to give. EN and ZH instructions below are meant to be parallel in strength. Return exactly one short answer and no explanation."
+  system_zh: "你正在参与一个纯协调任务。你的目标是给出最可能与另一位{context_zh}的参与者一致的答案。以下中英文说明应对等。只输出一个简短答案，不要解释。"
+  user_en: "Give one short answer that is most likely to match another participant {context_en}.\nAnswer in {answer_language}.\nCategory: {item_text_en}\n(Parallel cue: match the other participant's likely answer; keep the same category.)"
+  user_zh: "请只给出一个最可能与另一位{context_zh}的参与者一致的答案。\n请用{answer_language}作答。\n类别：{item_text_zh}\n（对等提示：与对方可能给出的答案一致；类别不变。）"
+
+R_FMT:
+  system_en: "You are taking part in a pure coordination task. Return exactly one English noun phrase or single token as requested—no punctuation beyond the answer, no explanation."
+  system_zh: "你正在参与一个纯协调任务。只输出一个简短名词或单词答案，不要解释，不要多余标点。"
+  user_en: "Answer in {answer_language} with ONE short noun phrase or single word only.\nCategory: {item_text_en}"
+  user_zh: "请用{answer_language}只输出一个简短名词或单词。\n类别：{item_text_zh}"
+
+R_COORD:
+  system_en: "You are taking part in a pure coordination task. Your goal is to match another participant {context_en}. Return exactly one short answer and no explanation."
+  system_zh: "你正在参与一个纯协调任务。你的目标是与另一位{context_zh}的参与者保持一致。只输出一个简短答案，不要解释。"
+  user_en: "Try again without changing the coordination goal. Give one short answer most likely to match another participant {context_en}.\nAnswer in {answer_language}.\nCategory: {item_text_en}"
+  user_zh: "请在不改变协调目标的前提下再尝试一次，给出最可能与另一位{context_zh}的参与者一致的答案。\n请用{answer_language}作答。\n类别：{item_text_zh}"
+
+R_SHAM:
+  system_en: "You are taking part in a pure coordination task. Your goal is to give the answer another participant {context_en} is most likely to give. Return exactly one short answer and no explanation."
+  system_zh: "你正在参与一个纯协调任务。你的目标是给出最可能与另一位{context_zh}的参与者一致的答案。只输出一个简短答案，不要解释。"
+  user_en: "Please respond.\nGive one short answer that is most likely to match another participant {context_en}.\nAnswer in {answer_language}.\nCategory: {item_text_en}"
+  user_zh: "请作答。\n请只给出一个最可能与另一位{context_zh}的参与者一致的答案。\n请用{answer_language}作答。\n类别：{item_text_zh}"

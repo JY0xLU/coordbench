@@ -1,0 +1,21 @@
+BY_LANGUAGE
+prompt_language  cells  mean_jsd  mean_tvd  top1_match_rate  min_n_4o  min_n_54
+             en     15  0.395363  0.450292         0.466667        49         0
+             zh     15  0.198029  0.217333         0.800000        50        50
+
+OVERALL
+{'cells': 30, 'mean_jsd': 0.29329365065970575, 'mean_tvd': 0.3297959183673469, 'top1_match_rate': 0.6333333333333333, 'min_n_4o': 49, 'min_n_54': 0}
+
+TOP1_MISMATCH_CELLS
+       item_id prompt_language           top1_4o         top1_54  n_4o_nonempty  n_54_nonempty      jsd  tvd
+study2_item_02              en         harrykane   David Beckham             50             50 0.414152 0.62
+study2_item_03              en        rishisunak     donaldtrump             50             50 1.000000 1.00
+study2_item_03              zh  winstonchurchill     donaldtrump             50             50 0.940656 0.98
+study2_item_04              en            bigben                             50              0      NaN  NaN
+study2_item_05              en         snowdonia Mount Everest.*             50             50 1.000000 1.00
+study2_item_05              zh         snowdonia Mount Everest.*             50             50 0.865854 0.94
+study2_item_08              en        Ed Sheeran      Elton John             50             50 0.928991 0.98
+study2_item_09              en prideandprejudice    Harry Potter             50             50 0.833679 0.94
+study2_item_09              zh prideandprejudice     harrypotter             50             50 0.928991 0.98
+study2_item_11              en            London           paris             50             50 0.833679 0.94
+study2_item_13              en             Pound           pound             50             50 0.414152 0.62

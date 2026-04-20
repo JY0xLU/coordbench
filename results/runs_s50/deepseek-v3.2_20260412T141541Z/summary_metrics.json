@@ -1,0 +1,41 @@
+[
+  {
+    "metric_family": "cross_lingual",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "round_index": 1,
+    "prompt_language": "en_vs_zh",
+    "mean_jsd": 0.1423657035318165,
+    "mean_tvd": 0.18533333333333332,
+    "mean_top1_match": 0.8666666666666667,
+    "mean_flip_rate": 0.13333333333333333,
+    "mean_spearman": 0.24401693585629247,
+    "item_count": 15
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "round_index": 1,
+    "prompt_language": "en",
+    "mean_jsd": 0.856137279387091,
+    "mean_tvd": 0.8721428571428571,
+    "mean_top1_match": 0.14285714285714285,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.2606165558139001,
+    "item_count": 14
+  },
+  {
+    "metric_family": "human_alignment",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "round_index": 1,
+    "prompt_language": "zh",
+    "mean_jsd": 0.8357924255336383,
+    "mean_tvd": 0.856,
+    "mean_top1_match": 0.13333333333333333,
+    "mean_flip_rate": NaN,
+    "mean_spearman": -0.21054408200004757,
+    "item_count": 15
+  }
+]

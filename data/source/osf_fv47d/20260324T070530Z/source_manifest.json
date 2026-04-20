@@ -1,0 +1,129 @@
+{
+  "project_id": "fv47d",
+  "downloaded_at_utc": "2026-03-24T07:06:04.519879+00:00",
+  "snapshot_id": "20260324T070530Z",
+  "files": [
+    {
+      "category": "datasets",
+      "name": "Study1.csv",
+      "url": "https://osf.io/download/nb52s/",
+      "sha256": "6be2dc06a34eaafdd415d1a3cf2305d74f57598be7934a80cee61679f976f970",
+      "bytes": 62170
+    },
+    {
+      "category": "datasets",
+      "name": "Study1b.csv",
+      "url": "https://osf.io/download/fdhyn/",
+      "sha256": "56a42bdfbc59a788810a709fda92424204bffcd13db095a31d6f071c94bcddd7",
+      "bytes": 80416
+    },
+    {
+      "category": "datasets",
+      "name": "Study2.csv",
+      "url": "https://osf.io/download/gr7eh/",
+      "sha256": "a01a9be8b70f0f3f3405dccfdb49a440ea0c731b7ae142fdb84f495a8eaec89c",
+      "bytes": 514951
+    },
+    {
+      "category": "datasets",
+      "name": "Study3.csv",
+      "url": "https://osf.io/download/k9a7u/",
+      "sha256": "e64c145cee58e36c9e045e4177808932cc413663a1f25ed1ec75b35c03228f9d",
+      "bytes": 458586
+    },
+    {
+      "category": "datasets",
+      "name": "Study1c.xlsx",
+      "url": "https://osf.io/download/3a2s9/",
+      "sha256": "899305c75a12c363614a4a6388e753bf689783ca60216805707a89f801229b7b",
+      "bytes": 13386
+    },
+    {
+      "category": "materials",
+      "name": "Table_of_Alignment_Items.docx",
+      "url": "https://osf.io/download/ycgbx/",
+      "sha256": "2332f3356524c6e3d85253c4f0fd50c7bb6212109bd13e3979a5506d7e146961",
+      "bytes": 15961
+    },
+    {
+      "category": "materials",
+      "name": "Instructions_International_Alignment_Study.docx",
+      "url": "https://osf.io/download/ndtqw/",
+      "sha256": "5c7128130cf5578dcbe60f26811ff62b357749577b6e3b83b1fdd42d3fb803ea",
+      "bytes": 984231
+    },
+    {
+      "category": "materials",
+      "name": "Supplementary_Materials.docx",
+      "url": "https://osf.io/download/68c1a232d4c497369403576d/",
+      "sha256": "80009b620fe0da3df87ecaaacff42e0c812a88adfdeeadf2548b78de3a87a88f",
+      "bytes": 248928
+    },
+    {
+      "category": "materials",
+      "name": "RScriptForInternationalAlignmentPaper.html",
+      "url": "https://osf.io/download/2k8cd/",
+      "sha256": "4760834e29ff9e25dda16353fdfd0969bb084d5a261a83b382665c77fe75b83c",
+      "bytes": 800489
+    },
+    {
+      "category": "materials",
+      "name": "Leave_One_Out_Bootstrapping.html",
+      "url": "https://osf.io/download/68c19cf906e4e24ebf5d82f0/",
+      "sha256": "c76fdbb25c1abe7f9ececc95c3f82574e76785b90080701ef2a4bec76aaf203e",
+      "bytes": 714983
+    }
+  ],
+  "source_assets": [
+    {
+      "category": "datasets",
+      "name": "Study1.csv",
+      "url": "https://osf.io/download/nb52s/"
+    },
+    {
+      "category": "datasets",
+      "name": "Study1b.csv",
+      "url": "https://osf.io/download/fdhyn/"
+    },
+    {
+      "category": "datasets",
+      "name": "Study2.csv",
+      "url": "https://osf.io/download/gr7eh/"
+    },
+    {
+      "category": "datasets",
+      "name": "Study3.csv",
+      "url": "https://osf.io/download/k9a7u/"
+    },
+    {
+      "category": "datasets",
+      "name": "Study1c.xlsx",
+      "url": "https://osf.io/download/3a2s9/"
+    },
+    {
+      "category": "materials",
+      "name": "Table_of_Alignment_Items.docx",
+      "url": "https://osf.io/download/ycgbx/"
+    },
+    {
+      "category": "materials",
+      "name": "Instructions_International_Alignment_Study.docx",
+      "url": "https://osf.io/download/ndtqw/"
+    },
+    {
+      "category": "materials",
+      "name": "Supplementary_Materials.docx",
+      "url": "https://osf.io/download/68c1a232d4c497369403576d/"
+    },
+    {
+      "category": "materials",
+      "name": "RScriptForInternationalAlignmentPaper.html",
+      "url": "https://osf.io/download/2k8cd/"
+    },
+    {
+      "category": "materials",
+      "name": "Leave_One_Out_Bootstrapping.html",
+      "url": "https://osf.io/download/68c19cf906e4e24ebf5d82f0/"
+    }
+  ]
+}

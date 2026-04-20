@@ -1,0 +1,81 @@
+panel_id,item_id,surface_form,canonical_answer,notes
+study2_british_within,study2_item_01,**,**,auto-generated
+study2_british_within,study2_item_01,** London,** London,auto-generated
+study2_british_within,study2_item_03,Joe Biden,Joe Biden,auto-generated
+study2_british_within,study2_item_04,Buckingham Palace,Buckingham Palace,auto-generated
+study2_british_within,study2_item_02,David Beckham,David Beckham,auto-generated
+study2_british_within,study2_item_05,Mount Everest.*,Mount Everest.*,auto-generated
+study2_british_within,study2_item_08,**,**,auto-generated
+study2_british_within,study2_item_06,Fish and chips,Fish and chips,auto-generated
+study2_british_within,study2_item_07,**,**,auto-generated
+study2_british_within,study2_item_05,Ben Nevis,Ben Nevis,auto-generated
+study2_british_within,study2_item_09,Harry Potter,Harry Potter,auto-generated
+study2_british_within,study2_item_03,**Joe Biden**,**Joe Biden**,auto-generated
+study2_british_within,study2_item_10,**,**,auto-generated
+study2_british_within,study2_item_10,* BBC.cw,* BBC.cw,auto-generated
+study2_british_within,study2_item_11,London,London,auto-generated
+study2_british_within,study2_item_11,**,**,auto-generated
+study2_british_within,study2_item_12,Margaret Thatcher,Margaret Thatcher,auto-generated
+study2_british_within,study2_item_13,Pound,Pound,auto-generated
+study2_british_within,study2_item_15,**,**,auto-generated
+study2_british_within,study2_item_14,**,**,auto-generated
+study2_british_within,study2_item_01,London,London,auto-generated
+study2_british_within,study2_item_08,Ed Sheeran,Ed Sheeran,auto-generated
+study2_british_within,study2_item_15,Football.cw,Football.cw,auto-generated
+study2_british_within,study2_item_14,Rose,Rose,auto-generated
+study2_british_within,study2_item_03,Keir Starmer,Keir Starmer,auto-generated
+study2_british_within,study2_item_05,Ben Nevis.cw,Ben Nevis.cw,auto-generated
+study2_british_within,study2_item_07,Big Ben,Big Ben,auto-generated
+study2_british_within,study2_item_04,**Buckingham Palace**,**Buckingham Palace**,auto-generated
+study2_british_within,study2_item_10,BBC,BBC,auto-generated
+study2_british_within,study2_item_06,Fish and Chips,Fish and Chips,auto-generated
+study2_british_within,study2_item_13,British Pound,British Pound,auto-generated
+study2_british_within,study2_item_05,**,**,auto-generated
+study2_british_within,study2_item_08,Elton John,Elton John,auto-generated
+study2_british_within,study2_item_12,**,**,auto-generated
+study2_british_within,study2_item_13,Pound sterling,pound,manual_unresolved_merge_20260412
+study2_british_within,study2_item_13,Pound Sterling,pound,manual_unresolved_merge_20260412
+study2_british_within,study2_item_09,Harry Potter and the Philosopher's Stone,harrypotter,manual_unresolved_merge_20260412
+study2_british_within,study2_item_08,Elvis Presley,elvis,manual_unresolved_merge_20260412
+study2_british_within,study2_item_12,Queen Elizabeth II,queenelizabeth,manual_unresolved_merge_20260412
+study2_british_within,study2_item_05,Snowdon,snowdonia,manual_unresolved_merge_20260412_4omini
+study2_british_within,study2_item_04,The Shard,shard,manual_unresolved_merge_20260412_4omini
+study2_british_within,study2_item_02,Dave Beckham,davidbeckham,manual_unresolved_merge_20260412_4omini
+study2_british_within,study2_item_05,Scafell Pike,scafeldpike,manual_unresolved_merge_20260412_4omini
+study2_british_within,study2_item_09,1984,1984bygeorgeorwell,manual_unresolved_merge_20260412_4omini
+study2_british_within,study2_item_05,Mount Snowdon,snowdonia,manual_unresolved_merge_20260412_deepseekv3
+study2_british_within,study2_item_03,King Charles III,kingcharles,manual_global_merge_20260418
+study2_british_within,study2_item_12,Thatcher,margaretthatcher,manual_global_merge_20260418
+study2_british_within,study2_item_13,British Pound (GBP,pound,manual_global_merge_20260418
+study2_british_within,study2_item_13,Pound (GBP,pound,manual_global_merge_20260418
+study2_british_within,study2_item_13,British Pound Sterling,pound,manual_global_merge_20260418
+study2_british_within,study2_item_13,Pound Sterling (GBP,pound,manual_global_merge_20260418
+study2_british_within,study2_item_13,The pound,pound,manual_global_merge_20260418
+study2_british_within,study2_item_13,The pound (sterling,pound,manual_global_merge_20260418
+study2_british_within,study2_item_02,Beckham,davidbeckham,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_02,Rashford,marcusrashford,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_02,Ferdinand,rioferdinand,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_02,Cristiano Ronaldo,ronaldo,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_02,Lionel Messi,messi,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Biden,joebiden,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Johnson,borisjohnson,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Sunak,rishisunak,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Trump,donaldtrump,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Churchill,winstonchurchill,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_03,Vladimir Putin,putin,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,The British Museum,britishmuseum,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,The Tower of London,toweroflondon,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,The Houses of Parliament,housesofparliament,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,The London Eye,londoneye,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,The Eiffel Tower,eiffeltower,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,Big Ben (Elizabeth Tower,bigben,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_06,Bangers and Mash,sausageandmash,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_09,Harry Potter and the Philosopher's Stone by J.K. Rowling,harrypotter,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_13,Pounds,pound,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_13,The British Pound,pound,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_13,US dollar,dollar,manual_global_merge_20260418_pass2
+study2_british_within,study2_item_04,house,house,manual_global_merge_20260418_pass3
+study2_british_within,study2_item_02,Mo Farah,mofarah,manual_global_merge_20260418_pass3
+study2_british_within,study2_item_09,**Harry Potter and the Philosopher's Stone** by J.K. Rowling,harrypotter,manual_global_merge_20260418_pass3
+study2_british_within,study2_item_04,Tower Bridge,towerbridge,manual_global_merge_20260418_pass3
+study2_british_within,study2_item_13,**British Pound (GBP)**,pound,manual_global_merge_20260418_pass3
