@@ -1,0 +1,42 @@
+﻿<svg width="1280" height="520" viewBox="0 0 1280 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">coordbench workflow</title>
+  <desc id="desc">The coordbench pipeline from public coordination data to bilingual LLM sampling, normalization, metrics, and Track B repair analysis.</desc>
+  <rect width="1280" height="520" rx="44" fill="#0E151B"/>
+  <rect x="48" y="48" width="1184" height="424" rx="34" fill="#F8F3EA"/>
+  <text x="88" y="118" fill="#10251D" font-family="Verdana, Geneva, sans-serif" font-size="44" font-weight="800">coordbench workflow</text>
+  <text x="90" y="158" fill="#496057" font-family="Verdana, Geneva, sans-serif" font-size="20">from human coordination games to cross-lingual LLM robustness metrics</text>
+
+  <g font-family="Verdana, Geneva, sans-serif">
+    <rect x="92" y="220" width="196" height="132" rx="24" fill="#FFFFFF" stroke="#CFE1D7" stroke-width="3"/>
+    <text x="122" y="260" fill="#0F766E" font-size="18" font-weight="700">01</text>
+    <text x="122" y="296" fill="#10251D" font-size="28" font-weight="800">Fetch</text>
+    <text x="122" y="326" fill="#53635D" font-size="17">OSF source data</text>
+
+    <rect x="352" y="220" width="196" height="132" rx="24" fill="#FFFFFF" stroke="#CFE1D7" stroke-width="3"/>
+    <text x="382" y="260" fill="#0F766E" font-size="18" font-weight="700">02</text>
+    <text x="382" y="296" fill="#10251D" font-size="28" font-weight="800">Prompt</text>
+    <text x="382" y="326" fill="#53635D" font-size="17">EN / ZH panels</text>
+
+    <rect x="612" y="220" width="196" height="132" rx="24" fill="#FFFFFF" stroke="#CFE1D7" stroke-width="3"/>
+    <text x="642" y="260" fill="#0F766E" font-size="18" font-weight="700">03</text>
+    <text x="642" y="296" fill="#10251D" font-size="28" font-weight="800">Normalize</text>
+    <text x="642" y="326" fill="#53635D" font-size="17">aliases + canon</text>
+
+    <rect x="872" y="220" width="196" height="132" rx="24" fill="#FFFFFF" stroke="#CFE1D7" stroke-width="3"/>
+    <text x="902" y="260" fill="#0F766E" font-size="18" font-weight="700">04</text>
+    <text x="902" y="296" fill="#10251D" font-size="28" font-weight="800">Analyze</text>
+    <text x="902" y="326" fill="#53635D" font-size="17">JSD / TVD / top-1</text>
+
+    <rect x="1016" y="92" width="154" height="78" rx="22" fill="#10251D"/>
+    <text x="1042" y="124" fill="#38D39F" font-size="18" font-weight="800">Track B</text>
+    <text x="1042" y="150" fill="#F8F3EA" font-size="16">repair probe</text>
+  </g>
+
+  <path d="M298 286H338" stroke="#0F766E" stroke-width="8" stroke-linecap="round"/>
+  <path d="M558 286H598" stroke="#0F766E" stroke-width="8" stroke-linecap="round"/>
+  <path d="M818 286H858" stroke="#0F766E" stroke-width="8" stroke-linecap="round"/>
+  <path d="M970 214C970 164 1000 132 1016 132" stroke="#D98C2B" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 12"/>
+
+  <rect x="92" y="390" width="1076" height="46" rx="23" fill="#10251D"/>
+  <text x="124" y="421" fill="#F8F3EA" font-family="Consolas, Menlo, monospace" font-size="20">coordbench run-all --config configs/study2_british_en_zh.yaml</text>
+</svg>

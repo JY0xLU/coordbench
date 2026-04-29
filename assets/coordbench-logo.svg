@@ -1,0 +1,14 @@
+﻿<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">coordbench logo</title>
+  <desc id="desc">A friendly pixel-style benchmark bot connecting English and Chinese answer panels.</desc>
+  <rect width="320" height="320" rx="72" fill="#F6F1E8"/>
+  <rect x="44" y="58" width="232" height="204" rx="36" fill="#10251D"/>
+  <rect x="70" y="92" width="64" height="64" rx="10" fill="#38D39F"/>
+  <rect x="186" y="92" width="64" height="64" rx="10" fill="#7BCBFF"/>
+  <rect x="108" y="188" width="104" height="18" rx="9" fill="#FFD15C"/>
+  <rect x="84" y="226" width="152" height="12" rx="6" fill="#1B3C30"/>
+  <path d="M104 124H216" stroke="#F6F1E8" stroke-width="10" stroke-linecap="round" stroke-dasharray="16 18"/>
+  <path d="M96 48V26M224 48V26" stroke="#10251D" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="74" cy="76" r="10" fill="#FFD15C"/>
+  <circle cx="246" cy="76" r="10" fill="#FFD15C"/>
+</svg>
