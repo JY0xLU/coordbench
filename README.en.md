@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="assets/coordbench-logo.svg" alt="coordbench logo" width="140">
+  <img src="assets/coordbench-gpt-hero.png" alt="coordbench hero" width="100%">
 </p>
 
 <h1 align="center">coordbench</h1>
 
 <p align="center">
   <strong>A reproducible benchmark pipeline for cross-lingual tacit coordination in LLMs.</strong><br>
-  Human coordination data, EN/ZH prompting, answer normalization, and robustness metrics in one auditable workflow.
+  Human coordination distributions, EN/ZH prompts, answer normalization, and dual-track metrics in one auditable workflow.
 </p>
 
 <p align="center">
@@ -22,22 +22,75 @@
   <a href="https://github.com/JY0xLU/coordbench/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/JY0xLU/coordbench?style=social"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="Pipeline" src="https://img.shields.io/badge/pipeline-reproducible-10B981?style=flat-square">
-  <img alt="Languages" src="https://img.shields.io/badge/prompts-EN%20%2F%20ZH-0F766E?style=flat-square">
+  <img alt="Prompts" src="https://img.shields.io/badge/prompts-EN%20%2F%20ZH-0F766E?style=flat-square">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square"></a>
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/JY0xLU/coordbench/main?style=flat-square">
 </p>
 
+## What It Solves
+
+Most LLM benchmarks ask whether a model gives the correct answer. Tacit coordination games are different: when there is no single correct answer, can a model choose the answer that a target group would naturally converge on?
+
+`coordbench` turns that question into a reproducible benchmark pipeline. It runs the same coordination items under English and Chinese prompts while fixing the required answer language to English, then evaluates two separate axes:
+
+- **Human alignment:** whether model answer distributions match human focal-point distributions.
+- **Cross-lingual stability:** whether the same model preserves its focal-point distribution when only the prompt language changes.
+
+The result is not a one-off notebook. It is a rerunnable, inspectable, and extensible research tool for comparing model behavior.
+
+## Final Report Takeaways
+
+The finalized analysis evaluates **17 Round 1 model runs** on the `study2_british_within` panel, with **15 items x 2 prompt languages x 50 samples** for each complete run.
+
+- **No model wins on both axes.** `mimo-v2-pro` is the most cross-lingually stable model, while `gemini-2.5-flash` is closest to the human reference distribution.
+- **Human-likeness and stability are distinct capabilities.** A model can be stable across English/Chinese prompts while still being far from human focal points, or human-like under one prompt language while drifting under the other.
+- **Round 2 helps, but unevenly.** On flagged mismatch items, Round 2 restores top-1 agreement for **14/31** item-model pairs and lowers JSD for **21/31** pairs.
+- **The final report corrects an earlier slide typo.** `mimo-v2-pro` has mean cross-lingual JSD `0.020`, not `0.20`.
+
+## Method Overview
+
 <p align="center">
-  <img src="assets/coordbench-flow.svg" alt="coordbench workflow" width="100%">
+  <img src="assets/pipeline-overview-original.jpeg" alt="coordbench bilingual prompting and evaluation pipeline" width="88%">
 </p>
 
-## What It Is
+The key design choice is to run the same coordination items under English and Chinese instructions while requiring English answers in both conditions. This puts EN/ZH outputs into the same canonical answer space and avoids conflating instruction-language effects with output-language effects.
 
-Most LLM benchmarks ask whether a model gives the correct answer. Coordination games are trickier: when there is no single correct answer, can a model guess the answer that a target group would naturally coordinate on?
+The pipeline keeps two metric tracks separate:
 
-`coordbench` studies that question with a narrow, reproducible setup: EN/ZH matched prompts, human-reference distributions, model answer normalization, cross-lingual consistency metrics, and repair-oriented Track B experiments.
+- **Human-vs-model alignment:** model distribution vs. human reference distribution.
+- **EN-vs-ZH stability:** English-prompt model distribution vs. Chinese-prompt model distribution.
 
-It is not just a one-off notebook. It is a pipeline you can rerun, inspect, extend, and argue with. Gently, preferably. :)
+Round 2 is triggered only for items where Round 1 shows a cross-lingual top-1 mismatch, testing whether a lightweight retry can repair focal-answer drift.
+
+## Results
+
+### Round 1: Cross-Lingual Stability
+
+<p align="center">
+  <img src="assets/round1-cross-lingual-stability-original.png" alt="Round 1 cross-lingual stability results" width="95%">
+</p>
+
+Lower JSD means the English- and Chinese-prompt answer distributions are closer. Higher top-1 match means both prompt languages select the same most frequent canonical answer. `mimo-v2-pro`, `mimo-v2-omni`, and the MiniMax M2.7 family form the most stable tier; `qwen3.5-plus`, `gpt-5.4`, and `glm-4-flashx` show much larger drift.
+
+### Round 1: Human Alignment
+
+<p align="center">
+  <img src="assets/round1-human-alignment-original.png" alt="Round 1 human alignment results" width="95%">
+</p>
+
+Human-alignment JSD compares model output distributions with the same British-within human reference distribution. `gemini-2.5-flash` is closest to humans under both prompt conditions, but it is not the most cross-lingually stable model.
+
+### Round 2: Recovery Diagnostics
+
+<p align="center">
+  <img src="assets/round2-recovery-share-original.png" alt="Round 2 recovery share by model" width="95%">
+</p>
+
+<p align="center">
+  <img src="assets/round2-jsd-candidates-original.png" alt="Round 1 versus Round 2 JSD on candidate items" width="95%">
+</p>
+
+Round 2 is a lightweight retry on each model's own mismatch candidate items. It often reduces distributional drift, but it does not reliably restore the same top answer for every model family.
 
 ## Features
 
@@ -47,7 +100,7 @@ It is not just a one-off notebook. It is a pipeline you can rerun, inspect, exte
 | Human panels | Prepare benchmark-ready human panels and distributions |
 | Bilingual sampling | Run EN/ZH matched prompts with fixed answer language |
 | Normalization | Map model outputs through canonical answers, aliases, and folded surface forms |
-| Dual metrics | Separate cross-lingual coordination from human alignment |
+| Dual metrics | Keep human alignment separate from cross-lingual stability |
 | Round 2 | Generate re-coordination candidates from mismatch triggers |
 | Track B | Flag, diagnose, repair/sham resample, re-normalize, re-analyze, and report |
 
@@ -79,7 +132,7 @@ Run the default EN/ZH benchmark:
 coordbench run-all --config configs/study2_british_en_zh.yaml
 ```
 
-## Core CLI
+## Common Commands
 
 ```bash
 coordbench fetch-source-data
@@ -92,109 +145,46 @@ coordbench plot --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench run-all --config configs/study2_british_en_zh.yaml
 ```
 
-Standard workflow:
+## Output Layout
 
-```text
-fetch-source-data -> prepare-human-panels -> profile-dataset
--> run-sampling -> normalize -> analyze -> plot
-```
+Prepared data usually lives under `data/prepared/<snapshot_id>/`:
 
-## Track B
+- `panel_items.csv`: benchmark items, prompt text, panel metadata, and language variants.
+- `participant_responses.csv`: cleaned individual human responses.
+- `human_distributions.csv`: aggregated human focal-point distributions used as the human-alignment reference.
+- `panel_summary.csv`, `dataset_inventory.json`, `selection_report.md`, `benchmark_manifest.json`: audit and provenance files.
 
-Track B lives under `Agent/`. Given a baseline run that has already completed `normalize + analyze`, it performs:
+Run artifacts usually live under `artifacts/runs/<run_id>/`:
 
-```text
-flag -> LLM diagnosis -> repair/sham resampling -> normalize -> analyze -> report
-```
-
-Install the Agent package:
-
-```bash
-pip install -e Agent
-```
-
-Run Track B:
-
-```bash
-coordbench track-b run \
-  --config configs/study2_british_en_zh.yaml \
-  --baseline-run <run_id_or_path>
-```
-
-Use stub diagnoses when you only want to test the workflow:
-
-```bash
-coordbench track-b run \
-  --config configs/study2_british_en_zh.yaml \
-  --baseline-run <run_id> \
-  --stub-diagnose
-```
-
-Progress logs look like `[Track B] phase i/6 ... | overall xx%`. If the run goes quiet for a bit, it may simply be waiting for a model API response.
+- `raw_generations.jsonl`: raw model responses.
+- `normalized_outputs.csv`: canonicalized answers after alias mapping.
+- `item_metrics.csv`: item-level JSD, TVD, top-1 match, flip rate, and Spearman diagnostics.
+- `summary_metrics.json`: model-level summaries.
+- `round2_candidates.csv`: items selected for Round 2 retry.
+- `plots/`: generated analysis figures.
 
 ## Repository Layout
 
-| Path | Contents |
-| --- | --- |
-| `src/coordbench/` | Main benchmark package and CLI |
-| `Agent/` | Track B agent / repair pipeline |
-| `configs/` | Benchmark, provider, and sampling configs |
-| `data/` | Source data, aliases, and prepared panels |
-| `scripts/` | Long-run experiment scripts and monitors |
-| `tests/` | Unit and integration tests |
-| `docs/` | Data risks, proposal notes, and update logs |
-| `results/` | Curated experiment outputs |
-
-## Output Layout
-
-Prepared data:
-
 ```text
-data/prepared/<snapshot_id>/
+src/coordbench/      Python package and CLI implementation
+configs/             benchmark/provider YAML configs
+data/                source and prepared human-panel data
+artifacts/           run outputs, caches, logs, and plots
+results/             curated results and historical reports
+scripts/             experiment runners and monitoring scripts
+tools/               one-off aggregation and plotting utilities
+tests/               unit and integration tests
+assets/              README logo, diagrams, and result figures
 ```
 
-Run artifacts:
-
-```text
-artifacts/runs/<run_id>/
-```
-
-Common artifacts include `raw_generations.jsonl`, `normalized_outputs.csv`, `item_metrics.csv`, `summary_metrics.json`, `bootstrap_intervals.csv`, `round2_candidates.csv`, and `plots/`.
-
-## Method Notes
-
-Defaults:
-
-- Panel: `study2_british_within`
-- Prompt languages: `en`, `zh`
-- Answer language: `English`
-- Normalization: `allow_unmapped: false`
-- Round-2 triggers: `cross_lingual_top1_mismatch`, `human_top1_mismatch`, `either_top1_mismatch`
-
-Metric tracks:
-
-- Cross-lingual coordination uses `coord_answer_key` to ask whether a model converges to the same answer under different prompt languages.
-- Human alignment uses human-mapped `canonical_answer` to ask whether model answers match human reference distributions.
-
-## Development
+## Tests
 
 ```bash
 pytest -q
-python -m coordbench --help
-coordbench --help
 ```
 
 ## Source Data
 
-- OSF project: https://osf.io/fv47d/
-- Perez-Zapata et al., *Three International Studies on Pure Coordination Games*
+- OSF project: <https://osf.io/fv47d/>
+- Human coordination source: Perez-Zapata et al., *Three International Studies on Pure Coordination Games*
 
-## Star History
-
-<a href="https://www.star-history.com/#JY0xLU/coordbench&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date" />
-  </picture>
-</a>

@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="assets/coordbench-logo.svg" alt="coordbench logo" width="140">
+  <img src="assets/coordbench-gpt-hero.png" alt="coordbench hero" width="100%">
 </p>
 
 <h1 align="center">coordbench</h1>
 
 <p align="center">
-  <strong>一个用于评估 LLM 跨语言默契协调能力的可复现实验管线。</strong><br>
-  它把人类协调游戏数据、英中双语提示、答案归一化和稳健性指标放进同一条可追踪流水线里。
+  <strong>一个用于评估 LLM 跨语言默契协调能力的可复现 benchmark 管线。</strong><br>
+  用人类协调游戏分布、英中双语提示、答案归一化和双轨指标，诊断模型是否真的能保持“默契”。
 </p>
 
 <p align="center">
@@ -22,22 +22,75 @@
   <a href="https://github.com/JY0xLU/coordbench/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/JY0xLU/coordbench?style=social"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="Pipeline" src="https://img.shields.io/badge/pipeline-reproducible-10B981?style=flat-square">
-  <img alt="Languages" src="https://img.shields.io/badge/prompts-EN%20%2F%20ZH-0F766E?style=flat-square">
+  <img alt="Prompts" src="https://img.shields.io/badge/prompts-EN%20%2F%20ZH-0F766E?style=flat-square">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square"></a>
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/JY0xLU/coordbench/main?style=flat-square">
 </p>
 
-<p align="center">
-  <img src="assets/coordbench-flow.svg" alt="coordbench workflow" width="100%">
-</p>
-
 ## 它解决什么问题
 
-很多 LLM benchmark 关心“答得对不对”，但协调问题更微妙：当没有明确正确答案时，模型能不能和目标群体想到同一个默认答案？换句话说，它是不是懂那种“大家心照不宣会选什么”的默契。
+很多 LLM benchmark 关心“答得对不对”。但 tacit coordination games 更微妙：当没有唯一正确答案时，模型能不能猜到目标群体最可能共同选择的那个默认答案？
 
-`coordbench` 关注这个问题的小切口：在英中双语提示下，比较不同模型在 tacit coordination games 里的回答分布、跨语言一致性，以及和人类参考分布的贴近程度。
+`coordbench` 把这个问题做成一套可复现实验管线。它在英文和中文提示下运行同一组协调题，同时把答案语言固定为 English，最后分别衡量：
 
-它不是一个只跑一次的 notebook，而是一套尽量可复现、可审计、可继续扩展的实验管线。小心翼翼，但不装神秘。:)
+- **Human alignment**：模型回答分布是否贴近人类参考分布。
+- **Cross-lingual stability**：同一个模型只换提示语言后，focal answer 分布是否稳定。
+
+这不是一个只跑一次的 notebook，而是一套可以重跑、审计、扩展、比较不同模型的研究工具。
+
+## 最终报告结论
+
+最终分析在 `study2_british_within` panel 上评估了 **17 个 Round 1 model runs**，每个完整 run 使用 **15 items x 2 prompt languages x 50 samples**。
+
+- **没有一个模型同时赢下两条轴。** `mimo-v2-pro` 跨语言最稳定，`gemini-2.5-flash` 最接近人类参考分布。
+- **像人类和跨语言稳定不是同一种能力。** 一个模型可以 EN/ZH 很稳定，但离 human focal distribution 很远；也可以在某种提示语言下像人类，但换语言后 focal answer 发生漂移。
+- **Round 2 有帮助，但不均匀。** 在 flagged mismatch items 上，Round 2 恢复了 **14/31** 个 item-model pair 的 top-1 agreement，并降低了 **21/31** 个 pair 的 JSD。
+- **最终报告修正了早期 PPT 的小数点错误。** `mimo-v2-pro` 的 mean cross-lingual JSD 是 `0.020`，不是 `0.20`。
+
+## 方法概览
+
+<p align="center">
+  <img src="assets/pipeline-overview-original.jpeg" alt="coordbench bilingual prompting and evaluation pipeline" width="88%">
+</p>
+
+核心设计是：同一组协调题分别使用 English prompt 和 Chinese prompt，但两边都要求模型用 English 作答。这样 EN/ZH 输出分布可以落在同一个 canonical answer space 里比较，避免把“提示语言变化”和“输出语言变化”混在一起。
+
+管线分为两条指标轨道：
+
+- **Human-vs-model alignment**：模型分布 vs. 人类参考分布。
+- **EN-vs-ZH stability**：英文提示下的模型分布 vs. 中文提示下的模型分布。
+
+Round 2 只在 Round 1 出现 cross-lingual top-1 mismatch 的题目上触发，用来测试轻量 retry 是否能修复 focal answer 漂移。
+
+## 结果图
+
+### Round 1: Cross-lingual Stability
+
+<p align="center">
+  <img src="assets/round1-cross-lingual-stability-original.png" alt="Round 1 cross-lingual stability results" width="95%">
+</p>
+
+左图的 JSD 越低，表示 EN/ZH 分布越接近；右图 top-1 match 越高，表示两种提示语言更常选出同一个最高频答案。`mimo-v2-pro`、`mimo-v2-omni` 和 MiniMax M2.7 系列属于稳定层；`qwen3.5-plus`、`gpt-5.4`、`glm-4-flashx` 的语言漂移更明显。
+
+### Round 1: Human Alignment
+
+<p align="center">
+  <img src="assets/round1-human-alignment-original.png" alt="Round 1 human alignment results" width="95%">
+</p>
+
+Human-alignment JSD 比较的是模型输出分布和同一组 British-within human reference distribution。`gemini-2.5-flash` 在 EN/ZH 两种条件下都最接近人类，但它并不是跨语言最稳定的模型。
+
+### Round 2: Recovery Diagnostics
+
+<p align="center">
+  <img src="assets/round2-recovery-share-original.png" alt="Round 2 recovery share by model" width="95%">
+</p>
+
+<p align="center">
+  <img src="assets/round2-jsd-candidates-original.png" alt="Round 1 versus Round 2 JSD on candidate items" width="95%">
+</p>
+
+Round 2 是针对每个模型自己的 mismatch candidate items 做轻量重试。它经常能降低分布漂移，但并不能稳定恢复所有模型的 top answer。
 
 ## 核心能力
 
@@ -47,7 +100,7 @@
 | 人类 panel | 重建 benchmark-ready human panels、分布和题目清单 |
 | 双语采样 | 支持 EN / ZH 匹配提示，并固定 answer language |
 | 答案归一化 | 结合 canonical answer、alias、大小写/空格/标点折叠处理模型输出 |
-| 双轨指标 | 同时计算跨语言协调轨道和 human-alignment 轨道 |
+| 双轨指标 | 分开计算 human alignment 和 cross-lingual stability |
 | Round 2 | 根据 mismatch 候选题生成二轮 re-coordination |
 | Track B | 对 baseline run 自动 flag、诊断、repair/sham 重采样并生成报告 |
 
@@ -92,148 +145,46 @@ coordbench plot --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench run-all --config configs/study2_british_en_zh.yaml
 ```
 
-标准流程是：
-
-```text
-fetch-source-data -> prepare-human-panels -> profile-dataset
--> run-sampling -> normalize -> analyze -> plot
-```
-
-如果只想一口气跑完采样到图表，用 `run-all` 就行。
-
-## Track B：诊断与修复实验
-
-Track B 的集成实现放在 `Agent/` 目录里。它会基于已经完成 `normalize + analyze` 的 baseline run，自动执行：
-
-```text
-flag -> LLM diagnosis -> repair/sham resampling -> normalize -> analyze -> report
-```
-
-安装 Agent 包：
-
-```bash
-pip install -e Agent
-```
-
-运行 Track B：
-
-```bash
-coordbench track-b run \
-  --config configs/study2_british_en_zh.yaml \
-  --baseline-run <run_id_or_path>
-```
-
-没有诊断 API 时，可以先用占位诊断跑通流程：
-
-```bash
-coordbench track-b run \
-  --config configs/study2_british_en_zh.yaml \
-  --baseline-run <run_id> \
-  --stub-diagnose
-```
-
-日志会显示类似 `[Track B] phase i/6 ... | overall xx%` 的进度。如果它安静了一会儿，多半是在等某次模型 API 返回，不一定是挂了。
-
 ## 输出结构
 
-准备后的数据会写到：
+Prepared data 通常位于 `data/prepared/<snapshot_id>/`：
 
-```text
-data/prepared/<snapshot_id>/
-```
+- `panel_items.csv`：benchmark items、prompt text、panel metadata 和语言版本。
+- `participant_responses.csv`：清洗后的人类逐条回答。
+- `human_distributions.csv`：聚合后的人类 focal-point 分布，也是 human-alignment 参考。
+- `panel_summary.csv`、`dataset_inventory.json`、`selection_report.md`、`benchmark_manifest.json`：审计和复现辅助文件。
 
-典型文件包括：
+Run artifacts 通常位于 `artifacts/runs/<run_id>/`：
 
-```text
-participant_responses.csv
-human_distributions.csv
-panel_items.csv
-panel_summary.csv
-dataset_inventory.json
-selection_report.md
-benchmark_manifest.json
-```
-
-每次实验 run 会写到：
-
-```text
-artifacts/runs/<run_id>/
-```
-
-典型产物包括：
-
-```text
-run_manifest.json
-raw_generations.jsonl
-normalized_outputs.csv
-unresolved_queue.csv
-cell_completeness.csv
-coord_cell_completeness.csv
-item_metrics.csv
-summary_metrics.json
-bootstrap_intervals.csv
-round2_candidates.csv
-plots/
-```
-
-整理后的实验报告和历史结果放在 `results/`。命名规则见 [results/README.md](results/README.md)。
+- `raw_generations.jsonl`：模型原始回答。
+- `normalized_outputs.csv`：canonical answer 归一化结果。
+- `item_metrics.csv`：item-level JSD、TVD、top-1 match、flip rate、Spearman。
+- `summary_metrics.json`：model-level 汇总指标。
+- `round2_candidates.csv`：Round 2 候选题。
+- `plots/`：生成的分析图。
 
 ## 仓库结构
 
-| 路径 | 内容 |
-| --- | --- |
-| `src/coordbench/` | 主 benchmark 包和 CLI |
-| `Agent/` | Track B agent / repair pipeline |
-| `configs/` | benchmark、provider、采样配置 |
-| `data/` | 源数据、alias、prepared panels |
-| `scripts/` | 长实验 runner、监控和调试脚本 |
-| `tests/` | 单元测试和集成测试 |
-| `docs/` | 数据风险、proposal、更新记录 |
-| `results/` | 整理后的实验结果 |
-
-## 方法口径
-
-`coordbench` 目前默认关注：
-
-- 默认 panel：`study2_british_within`
-- 默认 prompt languages：`en`, `zh`
-- 默认 answer language：`English`
-- 默认 normalization：`allow_unmapped: false`
-- Round-2 trigger：
-  - `cross_lingual_top1_mismatch`
-  - `human_top1_mismatch`
-  - `either_top1_mismatch`
-
-核心指标分两条轨道：
-
-- Cross-lingual coordination：基于 `coord_answer_key`，更关注同一模型在不同语言提示下是否走向同一答案。
-- Human alignment：基于 human-mapped `canonical_answer`，更关注模型回答是否贴近人类参考分布。
-
-## 开发
-
-```bash
-pytest -q
+```text
+src/coordbench/      Python package 和 CLI 实现
+configs/             benchmark/provider YAML 配置
+data/                source 和 prepared human-panel 数据
+artifacts/           run outputs、cache、logs、plots
+results/             curated results 和历史报告
+scripts/             experiment runners 和监控脚本
+tools/               聚合、绘图等一次性工具
+tests/               unit/integration tests
+assets/              README logo、流程图和结果图
 ```
 
-如果你改了包名、CLI、配置或 Track B 集成，建议至少跑：
+## 测试
 
 ```bash
 pytest -q
-python -m coordbench --help
-coordbench --help
 ```
 
 ## 数据来源
 
-- OSF project: https://osf.io/fv47d/
-- Perez-Zapata et al., *Three International Studies on Pure Coordination Games*
+- OSF project: <https://osf.io/fv47d/>
+- Human coordination source: Perez-Zapata et al., *Three International Studies on Pure Coordination Games*
 
-## Star History
-
-<a href="https://www.star-history.com/#JY0xLU/coordbench&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=JY0xLU/coordbench&type=Date" />
-  </picture>
-</a>
