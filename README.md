@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/coordbench-gpt-hero.png" alt="coordbench hero" width="100%">
+  <img src="assets/coordbench-research-hero.png" alt="coordbench hero" width="100%">
 </p>
 
 <h1 align="center">coordbench</h1>
@@ -27,16 +27,21 @@
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/JY0xLU/coordbench/main?style=flat-square">
 </p>
 
-## 它解决什么问题
+## 为什么需要 CoordBench
 
 很多 LLM benchmark 关心“答得对不对”。但 tacit coordination games 更微妙：当没有唯一正确答案时，模型能不能猜到目标群体最可能共同选择的那个默认答案？
 
-`coordbench` 把这个问题做成一套可复现实验管线。它在英文和中文提示下运行同一组协调题，同时把答案语言固定为 English，最后分别衡量：
+例如，让两个人在不能交流的情况下各自“说出一个城市”。评估重点不是有没有标准答案，而是谁能预判对方、群体或文化语境里最显著的 focal point。对 LLM 来说，这类能力会影响多智能体协作、多语言产品界面、默认推荐、工具路由和人机协同中的“默认选择”。
 
-- **Human alignment**：模型回答分布是否贴近人类参考分布。
-- **Cross-lingual stability**：同一个模型只换提示语言后，focal answer 分布是否稳定。
+`coordbench` 把这个问题做成可复现实验管线：同一组协调题分别使用 English prompt 和 Chinese prompt，同时把答案语言固定为 English，最后分别衡量模型是否像人类、是否跨语言稳定。
 
-这不是一个只跑一次的 notebook，而是一套可以重跑、审计、扩展、比较不同模型的研究工具。
+## 研究问题
+
+| 问题 | 评估目标 | CoordBench 如何回答 |
+| --- | --- | --- |
+| RQ1 | Human alignment | 模型输出分布和人类 focal-point 分布有多接近？ |
+| RQ2 | Cross-lingual stability | 同一模型只换提示语言后，EN/ZH 输出分布是否保持一致？ |
+| RQ3 | Round 2 recovery | 对 Round 1 发生 top-1 mismatch 的题目，轻量 retry 能否恢复一致性？ |
 
 ## 最终报告结论
 
@@ -47,7 +52,11 @@
 - **Round 2 有帮助，但不均匀。** 在 flagged mismatch items 上，Round 2 恢复了 **14/31** 个 item-model pair 的 top-1 agreement，并降低了 **21/31** 个 pair 的 JSD。
 - **最终报告修正了早期 PPT 的小数点错误。** `mimo-v2-pro` 的 mean cross-lingual JSD 是 `0.020`，不是 `0.20`。
 
-## 方法概览
+<p align="center">
+  <img src="assets/dual-axis-summary.svg" alt="coordbench dual axis interpretation" width="92%">
+</p>
+
+## Benchmark Design
 
 <p align="center">
   <img src="assets/pipeline-overview-original.jpeg" alt="coordbench bilingual prompting and evaluation pipeline" width="88%">
@@ -55,12 +64,13 @@
 
 核心设计是：同一组协调题分别使用 English prompt 和 Chinese prompt，但两边都要求模型用 English 作答。这样 EN/ZH 输出分布可以落在同一个 canonical answer space 里比较，避免把“提示语言变化”和“输出语言变化”混在一起。
 
-管线分为两条指标轨道：
-
-- **Human-vs-model alignment**：模型分布 vs. 人类参考分布。
-- **EN-vs-ZH stability**：英文提示下的模型分布 vs. 中文提示下的模型分布。
-
-Round 2 只在 Round 1 出现 cross-lingual top-1 mismatch 的题目上触发，用来测试轻量 retry 是否能修复 focal answer 漂移。
+1. **Source data**：从 Perez-Zapata et al. 的 OSF 公开材料重建 human coordination panels。
+2. **Panel selection**：最终报告使用 `study2_british_within`，包含 15 个 pure coordination items。
+3. **Bilingual prompting**：为每个 item 构造 EN/ZH 匹配提示，固定 answer language 为 English。
+4. **Sampling**：每个完整 Round 1 model run 对每个 item、每种 prompt language 采样 50 次。
+5. **Normalization**：把开放式模型输出映射到 manually verified canonical answers 和 alias table。
+6. **Metrics**：分别计算 Human-vs-model 和 EN-vs-ZH 两条轨道的 JSD、TVD、top-1 match、flip rate 和 Spearman。
+7. **Round 2**：只对 Round 1 cross-lingual top-1 mismatch 的候选题做轻量 retry。
 
 ## 结果图
 
@@ -144,6 +154,16 @@ coordbench analyze --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench plot --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench run-all --config configs/study2_british_en_zh.yaml
 ```
+
+## 复现最终报告
+
+普通 quick start 使用当前默认 config；最终报告使用 curated 50-sample runs 和最终图表导出。复现时建议按这个顺序核对：
+
+1. 使用 `configs/study2_british_en_zh.yaml` 确认 panel、prompt languages、answer language 和 normalization 设置。
+2. 运行或收集每个模型的 Round 1 outputs：`raw_generations.jsonl`、`normalized_outputs.csv`、`item_metrics.csv`、`summary_metrics.json`。
+3. 使用 `round2_candidates.csv` 对 Round 1 cross-lingual top-1 mismatch items 做 Round 2 retry。
+4. 用 `tools/` 和 `scripts/` 下的聚合/绘图脚本生成最终 tables 和 figures。
+5. 对照 README 中的四张结果图确认：RQ1、RQ2、RQ3 不被合并成单一 leaderboard。
 
 ## 输出结构
 

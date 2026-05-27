@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/coordbench-gpt-hero.png" alt="coordbench hero" width="100%">
+  <img src="assets/coordbench-research-hero.png" alt="coordbench hero" width="100%">
 </p>
 
 <h1 align="center">coordbench</h1>
@@ -27,16 +27,21 @@
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/JY0xLU/coordbench/main?style=flat-square">
 </p>
 
-## What It Solves
+## Why CoordBench
 
 Most LLM benchmarks ask whether a model gives the correct answer. Tacit coordination games are different: when there is no single correct answer, can a model choose the answer that a target group would naturally converge on?
 
-`coordbench` turns that question into a reproducible benchmark pipeline. It runs the same coordination items under English and Chinese prompts while fixing the required answer language to English, then evaluates two separate axes:
+For example, if two people cannot communicate and are both asked to "name a city," success depends on anticipating a salient focal point rather than solving for a ground-truth label. This kind of behavior matters for multi-agent collaboration, multilingual user interfaces, default recommendations, tool routing, and human-AI workflows where implicit defaults shape outcomes.
 
-- **Human alignment:** whether model answer distributions match human focal-point distributions.
-- **Cross-lingual stability:** whether the same model preserves its focal-point distribution when only the prompt language changes.
+`coordbench` turns that question into a reproducible benchmark pipeline. It runs the same coordination items under English and Chinese prompts while fixing the required answer language to English, then evaluates whether models are human-like and whether they remain stable across prompt languages.
 
-The result is not a one-off notebook. It is a rerunnable, inspectable, and extensible research tool for comparing model behavior.
+## Research Questions
+
+| Question | Target | How CoordBench answers it |
+| --- | --- | --- |
+| RQ1 | Human alignment | How close are model answer distributions to human focal-point distributions? |
+| RQ2 | Cross-lingual stability | Does the same model preserve its EN/ZH output distribution when only prompt language changes? |
+| RQ3 | Round 2 recovery | Can a lightweight retry repair items that showed Round 1 top-1 mismatch? |
 
 ## Final Report Takeaways
 
@@ -47,7 +52,11 @@ The finalized analysis evaluates **17 Round 1 model runs** on the `study2_britis
 - **Round 2 helps, but unevenly.** On flagged mismatch items, Round 2 restores top-1 agreement for **14/31** item-model pairs and lowers JSD for **21/31** pairs.
 - **The final report corrects an earlier slide typo.** `mimo-v2-pro` has mean cross-lingual JSD `0.020`, not `0.20`.
 
-## Method Overview
+<p align="center">
+  <img src="assets/dual-axis-summary.svg" alt="coordbench dual axis interpretation" width="92%">
+</p>
+
+## Benchmark Design
 
 <p align="center">
   <img src="assets/pipeline-overview-original.jpeg" alt="coordbench bilingual prompting and evaluation pipeline" width="88%">
@@ -55,12 +64,13 @@ The finalized analysis evaluates **17 Round 1 model runs** on the `study2_britis
 
 The key design choice is to run the same coordination items under English and Chinese instructions while requiring English answers in both conditions. This puts EN/ZH outputs into the same canonical answer space and avoids conflating instruction-language effects with output-language effects.
 
-The pipeline keeps two metric tracks separate:
-
-- **Human-vs-model alignment:** model distribution vs. human reference distribution.
-- **EN-vs-ZH stability:** English-prompt model distribution vs. Chinese-prompt model distribution.
-
-Round 2 is triggered only for items where Round 1 shows a cross-lingual top-1 mismatch, testing whether a lightweight retry can repair focal-answer drift.
+1. **Source data:** reconstruct human coordination panels from Perez-Zapata et al.'s public OSF materials.
+2. **Panel selection:** the final report uses `study2_british_within`, with 15 pure coordination items.
+3. **Bilingual prompting:** create matched EN/ZH prompts while fixing answer language to English.
+4. **Sampling:** each complete Round 1 model run samples every item under both prompt languages 50 times.
+5. **Normalization:** map open-ended model outputs through manually verified canonical answers and alias tables.
+6. **Metrics:** compute JSD, TVD, top-1 match, flip rate, and Spearman for both Human-vs-model and EN-vs-ZH tracks.
+7. **Round 2:** retry only the candidate items with Round 1 cross-lingual top-1 mismatch.
 
 ## Results
 
@@ -144,6 +154,16 @@ coordbench analyze --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench plot --config configs/study2_british_en_zh.yaml --run-id <run_id>
 coordbench run-all --config configs/study2_british_en_zh.yaml
 ```
+
+## Reproducing the Final Report
+
+The quick-start command uses the current default config. The final report uses curated 50-sample runs and final figure exports. To reproduce the report-level analysis, check the workflow in this order:
+
+1. Use `configs/study2_british_en_zh.yaml` to confirm panel, prompt languages, answer language, and normalization settings.
+2. Run or collect Round 1 outputs for each model: `raw_generations.jsonl`, `normalized_outputs.csv`, `item_metrics.csv`, and `summary_metrics.json`.
+3. Use `round2_candidates.csv` to retry Round 1 cross-lingual top-1 mismatch items.
+4. Use aggregation and plotting scripts under `tools/` and `scripts/` to generate final tables and figures.
+5. Compare against the README figures to keep RQ1, RQ2, and RQ3 separate rather than collapsing them into one leaderboard.
 
 ## Output Layout
 
