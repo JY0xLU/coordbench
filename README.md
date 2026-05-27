@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="assets/coordbench-research-hero.png" alt="coordbench hero" width="100%">
 </p>
 
@@ -53,7 +53,7 @@
 - **最终报告修正了早期 PPT 的小数点错误。** `mimo-v2-pro` 的 mean cross-lingual JSD 是 `0.020`，不是 `0.20`。
 
 <p align="center">
-  <img src="assets/dual-axis-summary.svg" alt="coordbench dual axis interpretation" width="92%">
+  <img src="assets/final-report-takeaway.png" alt="coordbench dual axis interpretation" width="92%">
 </p>
 
 ## Benchmark Design

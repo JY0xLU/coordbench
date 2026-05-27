@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="assets/coordbench-research-hero.png" alt="coordbench hero" width="100%">
 </p>
 
@@ -53,7 +53,7 @@ The finalized analysis evaluates **17 Round 1 model runs** on the `study2_britis
 - **The final report corrects an earlier slide typo.** `mimo-v2-pro` has mean cross-lingual JSD `0.020`, not `0.20`.
 
 <p align="center">
-  <img src="assets/dual-axis-summary.svg" alt="coordbench dual axis interpretation" width="92%">
+  <img src="assets/final-report-takeaway.png" alt="coordbench dual axis interpretation" width="92%">
 </p>
 
 ## Benchmark Design
